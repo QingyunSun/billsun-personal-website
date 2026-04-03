@@ -40,11 +40,14 @@ class SiteStructureTests(unittest.TestCase):
 
     def test_core_external_links_exist(self) -> None:
         expected_links = {
+            "/podcast",
             "https://stanford.edu/~qysun/",
             "https://www.linkedin.com/in/qingyun-sun",
             "https://scholar.google.com/citations?user=POXzrBYAAAAJ&hl=en",
             "https://x.com/BillSun_AI",
             "https://www.youtube.com/@Billsun_ai",
+            "https://www.agihouse.org/",
+            "https://agihouse-app.web.app/events",
         }
         self.assertTrue(expected_links.issubset(set(self.links)))
 
@@ -60,6 +63,10 @@ class SiteStructureTests(unittest.TestCase):
 
     def test_portrait_asset_is_referenced(self) -> None:
         self.assertIn("./assets/qingyun-sun-portrait-1280.jpg", self.images)
+
+    def test_podcast_page_exists(self) -> None:
+        podcast_path = SITE_ROOT / "podcast" / "index.html"
+        self.assertTrue(podcast_path.exists())
 
 
 if __name__ == "__main__":
