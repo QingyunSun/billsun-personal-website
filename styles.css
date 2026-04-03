@@ -413,6 +413,27 @@ a {
   text-decoration: none;
 }
 
+.network-card-link,
+.network-card-main-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.network-card-main-link {
+  min-height: calc(100% - 1.4rem);
+}
+
+.network-sub-link {
+  margin: 0.9rem 0 0;
+  font-size: 0.92rem;
+}
+
+.network-sub-link a {
+  color: var(--accent-strong);
+  text-decoration: none;
+}
+
 .network-card:hover,
 .proof-card:hover,
 .panel:hover,

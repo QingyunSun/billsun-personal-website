@@ -1,0 +1,142 @@
+.podcast-page .site-shell {
+  padding-bottom: 5rem;
+}
+
+.podcast-hero h1 {
+  margin: 0.65rem 0 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.9rem, 7vw, 5rem);
+  line-height: 0.95;
+}
+
+.podcast-intro {
+  max-width: 54rem;
+  margin: 1.25rem 0 0;
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 1.04rem;
+}
+
+.podcast-grid,
+.archive-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.8rem;
+}
+
+.podcast-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.podcast-grid-featured {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.podcast-card,
+.archive-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, rgba(11, 16, 8, 0.92), rgba(8, 11, 6, 0.82));
+  box-shadow: var(--shadow);
+}
+
+.podcast-card {
+  overflow: hidden;
+}
+
+.podcast-card img,
+.archive-card img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+.podcast-card img {
+  aspect-ratio: 4 / 3;
+}
+
+.podcast-card-copy {
+  padding: 1.25rem;
+}
+
+.podcast-tag {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.podcast-card h3 {
+  margin: 0.7rem 0 0.7rem;
+  font-size: 1.3rem;
+}
+
+.podcast-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.podcast-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.link-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.72rem 0.95rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 700;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.link-pill:hover,
+.archive-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.archive-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.archive-card {
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease;
+}
+
+.archive-card img {
+  aspect-ratio: 4 / 3;
+}
+
+.archive-card span {
+  display: block;
+  padding: 0.95rem 1rem 1.05rem;
+  font-size: 0.96rem;
+  font-weight: 700;
+}
+
+@media (max-width: 980px) {
+  .podcast-grid,
+  .podcast-grid-featured,
+  .archive-grid {
+    grid-template-columns: 1fr;
+  }
+}
