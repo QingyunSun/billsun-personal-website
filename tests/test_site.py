@@ -44,6 +44,7 @@ class SiteStructureTests(unittest.TestCase):
             "https://www.linkedin.com/in/qingyun-sun",
             "https://scholar.google.com/citations?user=POXzrBYAAAAJ&hl=en",
             "https://x.com/BillSun_AI",
+            "https://www.youtube.com/@Billsun_ai",
         }
         self.assertTrue(expected_links.issubset(set(self.links)))
 
@@ -52,6 +53,10 @@ class SiteStructureTests(unittest.TestCase):
         self.assertIn("Qingyun Sun", self.html)
         self.assertIn("AI researcher", self.html)
         self.assertIn("Stanford", self.html)
+        self.assertIn(
+            "1st researcher in Google Brain to discover that Transformer works",
+            self.html,
+        )
 
     def test_portrait_asset_is_referenced(self) -> None:
         self.assertIn("./assets/qingyun-sun-portrait-1280.jpg", self.images)
