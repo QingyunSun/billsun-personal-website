@@ -144,7 +144,7 @@ a {
 }
 
 .hero {
-  padding: 6.5rem 0 4rem;
+  padding: 5.2rem 0 4rem;
   text-align: center;
 }
 
@@ -210,7 +210,7 @@ a {
   justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 1.4rem;
 }
 
 .button {
@@ -323,6 +323,10 @@ a {
   background:
     radial-gradient(circle at top right, rgba(200, 255, 44, 0.12), transparent 28%),
     linear-gradient(180deg, rgba(16, 24, 10, 0.96), rgba(9, 14, 6, 0.9));
+}
+
+.proof-card-focus .proof-body {
+  font-size: 1.02rem;
 }
 
 .section {
