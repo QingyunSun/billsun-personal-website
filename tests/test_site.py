@@ -40,7 +40,7 @@ class SiteStructureTests(unittest.TestCase):
 
     def test_core_external_links_exist(self) -> None:
         expected_links = {
-            "/podcast",
+            "/podcast/",
             "https://stanford.edu/~qysun/",
             "https://www.linkedin.com/in/qingyun-sun",
             "https://scholar.google.com/citations?user=POXzrBYAAAAJ&hl=en",
