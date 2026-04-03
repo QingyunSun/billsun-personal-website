@@ -63,7 +63,7 @@ a {
   top: 1rem;
   z-index: 10;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   gap: 1rem;
   align-items: center;
   margin-top: 1rem;
@@ -93,6 +93,7 @@ a {
 }
 
 .topnav {
+  min-width: 0;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -108,6 +109,24 @@ a {
 .topnav a:hover,
 .topnav a.is-active {
   color: var(--text);
+}
+
+.topbar-utilities,
+.topbar-social {
+  display: flex;
+  align-items: center;
+}
+
+.topbar-utilities {
+  justify-self: end;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.topbar-social {
+  flex-wrap: wrap;
+  gap: 0.55rem;
 }
 
 .mini-cta,
@@ -476,6 +495,18 @@ a {
   fill: currentColor;
 }
 
+.topbar-social .icon-link {
+  width: 2.75rem;
+  height: 2.75rem;
+  background: rgba(10, 15, 7, 0.82);
+  box-shadow: none;
+}
+
+.topbar-social .icon-link svg {
+  width: 1rem;
+  height: 1rem;
+}
+
 [data-reveal="true"] {
   opacity: 0;
   transform: translateY(28px);
@@ -501,6 +532,11 @@ a {
   .topbar {
     border-radius: 28px;
   }
+
+  .topbar-utilities {
+    justify-self: stretch;
+    justify-content: space-between;
+  }
 }
 
 @media (max-width: 760px) {
@@ -518,6 +554,16 @@ a {
 
   .topnav {
     justify-content: flex-start;
+  }
+
+  .topbar-utilities {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .topbar-social .icon-link {
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
   .hero {

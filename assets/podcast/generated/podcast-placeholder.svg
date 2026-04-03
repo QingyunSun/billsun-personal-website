@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Bill Sun podcast placeholder</title>
+  <desc id="desc">Default placeholder cover for podcast entries without uploaded artwork yet.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#081006"/>
+      <stop offset="100%" stop-color="#111b09"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#c8ff2c"/>
+      <stop offset="100%" stop-color="#7cb60e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g stroke="rgba(255,255,255,0.06)">
+    <path d="M0 180H1600"/>
+    <path d="M0 360H1600"/>
+    <path d="M0 540H1600"/>
+    <path d="M0 720H1600"/>
+    <path d="M320 0V900"/>
+    <path d="M640 0V900"/>
+    <path d="M960 0V900"/>
+    <path d="M1280 0V900"/>
+  </g>
+  <rect x="108" y="108" width="1384" height="684" rx="40" fill="rgba(5,8,4,0.72)" stroke="rgba(200,255,44,0.18)"/>
+  <rect x="582" y="202" width="436" height="78" rx="39" fill="url(#line)"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="800" y="255" text-anchor="middle" font-size="42" font-weight="800" fill="#081006">Bill Sun's Podcast</text>
+    <text x="800" y="398" text-anchor="middle" font-size="110" font-weight="800" fill="#f7f8f2">Cover Pending</text>
+    <text x="800" y="468" text-anchor="middle" font-size="36" fill="#b7bda8">Link is live. Artwork has not been uploaded yet.</text>
+    <text x="800" y="610" text-anchor="middle" font-size="26" fill="#c8ff2c" letter-spacing="6">AI  CRYPTO  MARKETS  PODCAST</text>
+  </g>
+</svg>
