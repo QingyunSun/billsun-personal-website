@@ -5,6 +5,7 @@ import unittest
 
 SITE_ROOT = pathlib.Path(__file__).resolve().parents[1]
 INDEX_PATH = SITE_ROOT / "index.html"
+PODCAST_PATH = SITE_ROOT / "podcast" / "index.html"
 
 
 class SiteParser(html.parser.HTMLParser):
@@ -65,8 +66,31 @@ class SiteStructureTests(unittest.TestCase):
         self.assertIn("./assets/qingyun-sun-portrait-1280.jpg", self.images)
 
     def test_podcast_page_exists(self) -> None:
-        podcast_path = SITE_ROOT / "podcast" / "index.html"
-        self.assertTrue(podcast_path.exists())
+        self.assertTrue(PODCAST_PATH.exists())
+
+
+class PodcastPageTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.html = PODCAST_PATH.read_text(encoding="utf-8")
+        parser = SiteParser()
+        parser.feed(cls.html)
+        cls.images = parser.images
+
+    def test_podcast_page_does_not_use_placeholder_covers(self) -> None:
+        self.assertNotIn(
+            "../assets/podcast/generated/podcast-placeholder.svg",
+            self.images,
+        )
+
+    def test_new_podcast_covers_are_referenced(self) -> None:
+        expected_images = {
+            "../assets/podcast/stripe-on-stable-coin.png",
+            "../assets/podcast/talk-to-announce-aiusd.png",
+            "../assets/podcast/building-ai-trader.png",
+            "../assets/podcast/sophia-interview-on-anthropic.png",
+        }
+        self.assertTrue(expected_images.issubset(set(self.images)))
 
 
 if __name__ == "__main__":
