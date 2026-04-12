@@ -94,7 +94,7 @@ class PodcastPageTests(unittest.TestCase):
         self.assertIn('id="more-chinese"', self.html)
         self.assertNotIn('id="more-english" class="podcast-more" open', self.html)
         self.assertNotIn('id="more-chinese" class="podcast-more" open', self.html)
-        self.assertIn("Top 6", self.html)
+        self.assertIn("Top 9", self.html)
         self.assertIn("Top 3", self.html)
 
     def test_new_podcast_covers_are_referenced(self) -> None:
@@ -139,6 +139,39 @@ class PodcastPageTests(unittest.TestCase):
         self.assertIn("https://x.com/BillSun_AI/status/2043213031820439619?s=20", self.links)
         self.assertNotIn("../assets/podcast/video/cttv-apec-gen-alpha-agent.mp4", self.links)
         self.assertIn("2023 年中文电视采访", self.html)
+
+    def test_bedrock_card_prefers_youtube_before_wechat(self) -> None:
+        card = self.html.split("<h3>Bedrock 聊聊AI在投资的应用</h3>", 1)[1].split("</article>", 1)[0]
+        youtube = "https://www.youtube.com/watch?v=5gp3g_pMyTU"
+        wechat = "https://mp.weixin.qq.com/s/ZmQHy_YbNaC2BTVrLnYOpQ"
+        self.assertIn(youtube, card)
+        self.assertIn(wechat, card)
+        self.assertLess(card.index(youtube), card.index(wechat))
+
+    def test_bilingual_bilibili_episode_is_grouped_under_chinese(self) -> None:
+        title = "[英语播客]从对冲基金到AGI：斯坦福博士Bill Sun的双重人生"
+        english_section = self.html.split('<section id="english"', 1)[1].split('<section id="chinese"', 1)[0]
+        chinese_section = self.html.split('<section id="chinese"', 1)[1]
+        self.assertNotIn(title, english_section)
+        self.assertIn(title, chinese_section)
+
+    def test_featured_english_expands_to_top_nine(self) -> None:
+        english_section = self.html.split('<section id="english"', 1)[1].split('<details id="more-english"', 1)[0]
+        for title in {
+            "Illia Polosukhin (Transformer paper authors)",
+            "Building AI Trader with Reasoning and RAG | Bill Sun | Generative Alpha | RetrieveX 2024",
+            "Revolutionizing Financial Research, AI-Powered Investment Analysis | Grace Gong",
+        }:
+            self.assertIn(title, english_section)
+        self.assertNotIn("<h3>NEAR</h3>", english_section)
+
+    def test_tim_shi_card_prefers_youtube_before_x_post(self) -> None:
+        card = self.html.split("<h3>Tim Shi, Alex Chen and Monica Xie</h3>", 1)[1].split("</article>", 1)[0]
+        youtube = "https://www.youtube.com/watch?v=FEu3oT5r6lc"
+        x_post = "https://x.com/BillSun_AI/status/1859814533948493930"
+        self.assertIn(youtube, card)
+        self.assertIn(x_post, card)
+        self.assertLess(card.index(youtube), card.index(x_post))
 
 
 if __name__ == "__main__":
