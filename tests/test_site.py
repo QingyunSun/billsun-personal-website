@@ -135,8 +135,9 @@ class PodcastPageTests(unittest.TestCase):
         self.assertNotIn("https://x.com/i/broadcasts/1YqJDNbNRjQKV", self.html)
 
     def test_cttv_clip_is_listed_in_more_chinese(self) -> None:
-        self.assertIn("CTTV 财经采访：APEC 期间报道硅谷 AI Agent 创业公司", self.html)
-        self.assertIn("../assets/podcast/video/cttv-apec-gen-alpha-agent.mp4", self.links)
+        self.assertIn("CCTV 财经采访：APEC 期间报道硅谷 AI Agent 创业公司", self.html)
+        self.assertIn("https://x.com/BillSun_AI/status/2043213031820439619?s=20", self.links)
+        self.assertNotIn("../assets/podcast/video/cttv-apec-gen-alpha-agent.mp4", self.links)
         self.assertIn("2023 年中文电视采访", self.html)
 
 
