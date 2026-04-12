@@ -75,6 +75,8 @@ class PodcastPageTests(unittest.TestCase):
         cls.html = PODCAST_PATH.read_text(encoding="utf-8")
         parser = SiteParser()
         parser.feed(cls.html)
+        cls.ids = parser.ids
+        cls.links = parser.links
         cls.images = parser.images
 
     def test_podcast_page_does_not_use_placeholder_covers(self) -> None:
@@ -83,14 +85,59 @@ class PodcastPageTests(unittest.TestCase):
             self.images,
         )
 
+    def test_podcast_page_uses_language_sections(self) -> None:
+        self.assertTrue({"english", "chinese"}.issubset(self.ids))
+        self.assertTrue({"overview", "hosted", "guest", "archive"}.isdisjoint(self.ids))
+
+    def test_more_sections_exist_and_default_closed(self) -> None:
+        self.assertIn('id="more-english"', self.html)
+        self.assertIn('id="more-chinese"', self.html)
+        self.assertNotIn('id="more-english" class="podcast-more" open', self.html)
+        self.assertNotIn('id="more-chinese" class="podcast-more" open', self.html)
+        self.assertIn("Top 6", self.html)
+        self.assertIn("Top 3", self.html)
+
     def test_new_podcast_covers_are_referenced(self) -> None:
         expected_images = {
             "../assets/podcast/stripe-on-stable-coin.png",
             "../assets/podcast/talk-to-announce-aiusd.png",
             "../assets/podcast/building-ai-trader.png",
             "../assets/podcast/sophia-interview-on-anthropic.png",
+            "../assets/podcast/bedrock-ai-investing.jpg",
+            "../assets/podcast/haseeb-dragonfly.jpg",
+            "../assets/podcast/primora-interview.jpg",
+            "../assets/podcast/video/cttv-apec-gen-alpha-agent.png",
+            "../assets/podcast/youtube/wxPs6j35_oQ.jpg",
+            "../assets/podcast/youtube/njZ3oYLsRck.jpg",
+            "../assets/podcast/youtube/oVMC9T7KzQE.jpg",
+            "../assets/podcast/youtube/JLWGJ6NC6X8.jpg",
+            "../assets/podcast/youtube/BV1bWrPYMEjM.jpg",
+            "../assets/podcast/youtube/BV1tCHQzhEjB.jpg",
         }
         self.assertTrue(expected_images.issubset(set(self.images)))
+
+    def test_new_bilibili_links_are_present(self) -> None:
+        expected_links = {
+            "https://www.bilibili.com/video/BV1bWrPYMEjM/",
+            "https://www.bilibili.com/video/BV1tCHQzhEjB/",
+        }
+        self.assertTrue(expected_links.issubset(set(self.links)))
+
+    def test_haseeb_link_is_split_from_semianalysis(self) -> None:
+        haseeb_link = "https://x.com/BillSun_AI/status/1985943572504592759?s=20"
+        self.assertEqual(self.html.count(haseeb_link), 1)
+        self.assertIn("Haseeb, Managing Partner at Dragonfly", self.html)
+        self.assertNotIn("X Post 2", self.html)
+
+    def test_jie_tan_uses_youtube_link(self) -> None:
+        self.assertIn("https://www.youtube.com/watch?v=NLLmIIfcZZM", self.html)
+        self.assertNotIn("https://x.com/BillSun_AI/status/1981487539929436606?s=20", self.html)
+        self.assertNotIn("https://x.com/i/broadcasts/1YqJDNbNRjQKV", self.html)
+
+    def test_cttv_clip_is_listed_in_more_chinese(self) -> None:
+        self.assertIn("CTTV 财经采访：APEC 期间报道硅谷 AI Agent 创业公司", self.html)
+        self.assertIn("../assets/podcast/video/cttv-apec-gen-alpha-agent.mp4", self.links)
+        self.assertIn("2023 年中文电视采访", self.html)
 
 
 if __name__ == "__main__":
