@@ -170,6 +170,7 @@ class PodcastPageTests(unittest.TestCase):
 
     def test_jie_tan_uses_youtube_link(self) -> None:
         self.assertIn("https://www.youtube.com/watch?v=NLLmIIfcZZM", self.html)
+        self.assertIn("https://x.com/pinai_io/status/1980337162278301983", self.html)
         self.assertNotIn("https://x.com/BillSun_AI/status/1981487539929436606?s=20", self.html)
         self.assertNotIn("https://x.com/i/broadcasts/1YqJDNbNRjQKV", self.html)
 
