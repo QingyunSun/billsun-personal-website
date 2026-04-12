@@ -52,6 +52,10 @@ class SiteStructureTests(unittest.TestCase):
         }
         self.assertTrue(expected_links.issubset(set(self.links)))
 
+    def test_agi_house_event_list_uses_button_link(self) -> None:
+        self.assertIn('class="network-pill"', self.html)
+        self.assertIn(">Event List</a>", self.html)
+
     def test_core_identity_copy_exists(self) -> None:
         self.assertIn("Bill Sun", self.html)
         self.assertIn("Qingyun Sun", self.html)
@@ -61,6 +65,20 @@ class SiteStructureTests(unittest.TestCase):
             "1st researcher in Google Brain to discover that Transformer works",
             self.html,
         )
+
+    def test_research_roots_copy_exists(self) -> None:
+        self.assertIn("mathematical principles behind AI", self.html)
+        self.assertIn("Early contributor to Transformer and 1st to make", self.html)
+        self.assertIn("Transformer work on QA at Google Brain (2016)", self.html)
+        self.assertIn("Published author at ICML, NeurIPS, AAAI, CVPR, CoRL", self.html)
+
+    def test_about_section_lists_three_big_problems(self) -> None:
+        self.assertIn("From mathematical structure of AI to financial intelligence.", self.html)
+        self.assertIn("Three big problems I am interested in:", self.html)
+        self.assertIn("1. Self-recursive improvement", self.html)
+        self.assertIn("2. Continual learning", self.html)
+        self.assertIn("3. Multi-modal Pretrain", self.html)
+        self.assertIn("micro-structure information", self.html)
 
     def test_portrait_asset_is_referenced(self) -> None:
         self.assertIn("./assets/qingyun-sun-portrait-1280.jpg", self.images)
