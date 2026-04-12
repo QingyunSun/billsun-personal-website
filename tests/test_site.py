@@ -61,35 +61,45 @@ class SiteStructureTests(unittest.TestCase):
         self.assertIn("Qingyun Sun", self.html)
         self.assertIn("AI researcher", self.html)
         self.assertIn("Stanford", self.html)
-        self.assertIn(
-            "1st researcher in Google Brain to discover that Transformer works",
-            self.html,
-        )
+        self.assertIn("Early transformer", self.html)
+        self.assertIn("the first researcher at Google Brain", self.html)
 
     def test_research_roots_copy_exists(self) -> None:
-        self.assertIn("mathematical principles behind AI", self.html)
-        self.assertIn("Early contributor to Transformer and 1st to make", self.html)
-        self.assertIn("Transformer work on QA at Google Brain (2016)", self.html)
-        self.assertIn("Published author at ICML, NeurIPS, AAAI, CVPR, CoRL", self.html)
+        self.assertIn("the mathematics of AI", self.html)
+        self.assertIn("the first researcher at Google Brain to make", self.html)
+        self.assertIn("the Transformer work on QA (2016)", self.html)
+        self.assertIn("Published at ICML, NeurIPS, AAAI, CVPR, and CoRL", self.html)
 
     def test_research_roots_card_is_shortened(self) -> None:
-        self.assertIn("Stanford Math PhD, with a single mission: understand the", self.html)
-        self.assertIn("discover new AI model", self.html)
-        self.assertIn("architectures.", self.html)
+        self.assertIn("Stanford Math PhD focused on the mathematical structure of AI", self.html)
+        self.assertIn("new model architectures.", self.html)
         self.assertNotIn("During his PhD, he used", self.html)
 
     def test_about_section_lists_three_big_problems(self) -> None:
-        self.assertIn("From mathematical structure of AI to financial intelligence.", self.html)
-        self.assertIn("Three big problems I am interested in:", self.html)
-        self.assertIn("1. Self-recursive improvement", self.html)
-        self.assertIn("2. Continual learning", self.html)
-        self.assertIn("3. Multi-modal Pretrain", self.html)
-        self.assertIn("micro-structure information", self.html)
+        self.assertIn("From AI structure to financial intelligence.", self.html)
+        self.assertIn("Three problems I keep returning to.", self.html)
+        self.assertIn("Recursive self-improvement", self.html)
+        self.assertIn("Continual learning", self.html)
+        self.assertIn("Multimodal pretraining", self.html)
+        self.assertIn("microstructure", self.html)
+        self.assertIn('class="problem-grid"', self.html)
 
     def test_multi_agents_card_copy_exists(self) -> None:
         self.assertIn("Multi-agents", self.html)
-        self.assertIn("multi-agent interaction and market", self.html)
-        self.assertIn("algorithmic trading, and prediction", self.html)
+        self.assertIn("multi-agent interaction and market design", self.html)
+        self.assertIn("prediction", self.html)
+
+    def test_research_and_timeline_copy_is_sharper(self) -> None:
+        self.assertIn("Five themes that shape the work.", self.html)
+        self.assertIn("Early transformer work at Google Brain", self.html)
+        self.assertIn("RL, stochastic control, portfolio optimization", self.html)
+        self.assertIn("Main arcs, reduced to essentials.", self.html)
+        self.assertIn("Built an AI-powered forecast trading team", self.html)
+
+    def test_network_copy_is_tightened(self) -> None:
+        self.assertIn("Hosted and guest conversations across AI, crypto, robotics,", self.html)
+        self.assertIn("Bay Area AI builder network linking", self.html)
+        self.assertIn("community co-organized with Tim Shi", self.html)
 
     def test_portrait_asset_is_referenced(self) -> None:
         self.assertIn("./assets/qingyun-sun-portrait-1280.jpg", self.images)
