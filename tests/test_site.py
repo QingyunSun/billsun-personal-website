@@ -80,6 +80,11 @@ class SiteStructureTests(unittest.TestCase):
         self.assertIn("3. Multi-modal Pretrain", self.html)
         self.assertIn("micro-structure information", self.html)
 
+    def test_multi_agents_card_copy_exists(self) -> None:
+        self.assertIn("Multi-agents", self.html)
+        self.assertIn("multi-agent interaction and market", self.html)
+        self.assertIn("algorithmic trading, and prediction", self.html)
+
     def test_portrait_asset_is_referenced(self) -> None:
         self.assertIn("./assets/qingyun-sun-portrait-1280.jpg", self.images)
 
