@@ -86,8 +86,8 @@ class SiteStructureTests(unittest.TestCase):
 
     def test_multi_agents_card_copy_exists(self) -> None:
         self.assertIn("Multi-agents", self.html)
-        self.assertIn("multi-agent interaction and market design", self.html)
-        self.assertIn("prediction", self.html)
+        self.assertIn("Protocol and new market design", self.html)
+        self.assertIn("smart contracts, poker, trading.", self.html)
 
     def test_research_and_timeline_copy_is_sharper(self) -> None:
         self.assertIn("Five themes that shape the work.", self.html)
