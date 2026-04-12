@@ -72,6 +72,12 @@ class SiteStructureTests(unittest.TestCase):
         self.assertIn("Transformer work on QA at Google Brain (2016)", self.html)
         self.assertIn("Published author at ICML, NeurIPS, AAAI, CVPR, CoRL", self.html)
 
+    def test_research_roots_card_is_shortened(self) -> None:
+        self.assertIn("Stanford Math PhD, with a single mission: understand the", self.html)
+        self.assertIn("discover new AI model", self.html)
+        self.assertIn("architectures.", self.html)
+        self.assertNotIn("During his PhD, he used", self.html)
+
     def test_about_section_lists_three_big_problems(self) -> None:
         self.assertIn("From mathematical structure of AI to financial intelligence.", self.html)
         self.assertIn("Three big problems I am interested in:", self.html)
