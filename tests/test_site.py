@@ -213,6 +213,13 @@ class PodcastPageTests(unittest.TestCase):
         self.assertIn(x_post, card)
         self.assertLess(card.index(youtube), card.index(x_post))
 
+    def test_more_english_titles_remove_pin_ai_branding(self) -> None:
+        self.assertIn("BFC Super Founder Interview with Bill Sun &amp; Davide Crapis", self.html)
+        self.assertIn("AGI House Talk: Personal AI Hackathon + Robinhood", self.html)
+        self.assertNotIn("BFC Super Founder Interview with PIN AI Co-Founders", self.html)
+        self.assertNotIn("AGI House Talk: Personal AI Hackathon by PIN AI + Robinhood", self.html)
+        self.assertNotIn("Conversation on PIN AI,", self.html)
+
 
 if __name__ == "__main__":
     unittest.main()
